@@ -12,7 +12,7 @@ const Button = styled.button`
             case 'large':
                 return '2rem';
             default:
-                return '5rem';
+                return '1.5rem';
         }
     }};
 
