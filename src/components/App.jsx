@@ -12,7 +12,7 @@ export default function App() {
     return (
         <>
             <GlobalStyle />
-            <Modal />
+            <Modal isActive={false}/>
         </>
     )
 }

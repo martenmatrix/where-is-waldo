@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const fadeOut = keyframes`
