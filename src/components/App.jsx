@@ -1,4 +1,5 @@
 import Modal from './Modal';
+import Header from './Header';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -12,6 +13,7 @@ export default function App() {
     return (
         <>
             <GlobalStyle />
+            <Header time={'5:11'}/>
             <Modal isActive={false}/>
         </>
     )
