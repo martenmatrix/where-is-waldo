@@ -28,7 +28,7 @@ function SearchImage({ charactersToFind }) {
         const image = ImageRef.current;
         const rect = image.getBoundingClientRect();
 
-        // pixels of the original image / pixels of the current window => produces a scale value (you could use any other static number for the naturalWidth, however then you would not have the exact pixel for css styling)
+        // pixels of the original image / pixels of the current window => produces a scale value (you could use any other static number for the naturalWidth)
         const widthScale = image.naturalWidth / image.clientWidth;
         const heightScale = image.naturalHeight / image.clientHeight;
 
