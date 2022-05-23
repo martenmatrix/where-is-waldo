@@ -6,13 +6,18 @@ import TargetBox from './TargetBox';
 
 const Container = styled.div`
     position: relative;
+    margin-top: 5rem;
+    width: 100%;
+    object-fit: contain;
 `
 
 const Image = styled.img.attrs({ src: mainImage})`
     display: block;
+    position: absolute;
     width: 100%;
-    object-fit: contain;
-    margin-top: 5rem;
+    height: max-content;
+    top: 0;
+    left: 0;
 `;
 
 function SearchImage({ charactersToFind }) {
