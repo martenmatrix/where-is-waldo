@@ -3,10 +3,16 @@ import mainImage from '../img/search-image.jpg';
 import { useRef } from 'react';
 // TODO include TargetBox here and add a function prop to send a request
 
+const Container = styled.div`
+    position: relative;
+    pointer-events: none;
+`
+
 const Image = styled.img.attrs({ src: mainImage})`
     display: block;
     width: 100%;
     object-fit: contain;
+    pointer-events: auto;
 `;
 
 function SearchImage() {
@@ -38,7 +44,9 @@ function SearchImage() {
     }
 
     return (
+        <Container>
             <Image ref={ImageRef} onClick={onClick} />
+        </Container>
     )
 }
 
