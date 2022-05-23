@@ -11,7 +11,7 @@ const Container = styled.div`
     object-fit: contain;
 `
 
-const Image = styled.img.attrs({ src: mainImage})`
+const Image = styled.img.attrs({ src: mainImage, alt: 'Contains the figures to find' })`
     display: block;
     position: absolute;
     width: 100%;
