@@ -6,21 +6,18 @@ import TargetBox from './TargetBox';
 
 const Container = styled.div`
     position: relative;
-    pointer-events: none;
 `
 
 const Image = styled.img.attrs({ src: mainImage})`
     display: block;
     width: 100%;
     object-fit: contain;
-    pointer-events: auto;
     margin-top: 5rem;
 `;
 
 function SearchImage({ charactersToFind }) {
     const ImageRef = useRef();
-    const [absoluteCoordinates, setAbsoluteCoordinates] = useState();
-    const [relativeCoordinates, setRelativeCoordinates] = useState();
+    const [coordinates, setCoordinates] = useState();
 
     function getCoordinates(e) {
         const round = (num) => Math.round(num);
@@ -39,8 +36,16 @@ function SearchImage({ charactersToFind }) {
         const absoluteX = round(relativeX * widthScale);
         const absoluteY = round(relativeY * heightScale);
 
-        setAbsoluteCoordinates({ x: absoluteX, y: absoluteY });
-        setRelativeCoordinates({ x: relativeX, y: relativeY });
+        setCoordinates({
+            absolute: {
+                x: absoluteX,
+                y: absoluteY
+            },
+            relative: {
+                x: relativeX,
+                y: relativeY
+            }
+        });
     }
 
     function onClick(event) {
@@ -49,8 +54,8 @@ function SearchImage({ charactersToFind }) {
 
     return (
         <Container>
+            {coordinates && <TargetBox coordinates={coordinates} options={charactersToFind}/>}
             <Image ref={ImageRef} onClick={onClick} />
-            {relativeCoordinates && <TargetBox x={relativeCoordinates.x} y={relativeCoordinates.y} options={charactersToFind}/>}
         </Container>
     )
 }
