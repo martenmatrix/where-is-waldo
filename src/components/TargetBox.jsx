@@ -1,25 +1,27 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Select = styled.select`
+const Select = styled.select.attrs(({ coordinates }) => ({ style: {
+        top: coordinates.relative.y,
+        left: coordinates.relative.x
+    }
+    })
+)`
     position: absolute;
-    left: ${props => props.x}px;
-    top: ${props => props.y}px;
+    z-index: 10;
 `
 
 function TargetBox({ coordinates, options }) {
     return (
-        <Select x={coordinates.relative.x} y={coordinates.relative.y}>
+        <Select coordinates={coordinates}>
             {options.map(option => <option key={option.id} value={option.id}>{option.displayName}</option>)}
         </Select>
     )
 }
 
 TargetBox.propTypes = {
-    x: PropTypes.number,
-    y: PropTypes.number,
-    show: PropTypes.bool,
-    options: PropTypes.array
+    coordinates: PropTypes.object.isRequired,
+    options: PropTypes.array.isRequired
 }
 
 export default TargetBox;
