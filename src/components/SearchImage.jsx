@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import mainImage from '../img/search-image.jpg';
-import { useRef, useState } from 'react';
+import { useRef as defaultUseRef, useState } from 'react';
 import TargetBox from './TargetBox';
 // TODO include TargetBox here and add a function prop to send a request
 
@@ -20,7 +20,7 @@ const Image = styled.img.attrs({ src: mainImage, alt: 'Contains the figures to f
     left: 0;
 `;
 
-function SearchImage({ charactersToFind }) {
+function SearchImage({ charactersToFind, useRef }) {
     const ImageRef = useRef();
     const [coordinates, setCoordinates] = useState();
 
@@ -63,6 +63,10 @@ function SearchImage({ charactersToFind }) {
             <Image ref={ImageRef} onClick={onClick} />
         </Container>
     )
+}
+
+SearchImage.defaultProps = {
+    useRef: defaultUseRef,
 }
 
 export default SearchImage;
