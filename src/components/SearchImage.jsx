@@ -41,6 +41,10 @@ function SearchImage({ charactersToFind, useRef }) {
         const absoluteX = round(relativeX * widthScale);
         const absoluteY = round(relativeY * heightScale);
 
+        if (process.env.NODE_ENV === 'development') {
+            console.table({relativeX, relativeY, absoluteX, absoluteY});
+        }
+
         setCoordinates({
             absolute: {
                 x: absoluteX,
