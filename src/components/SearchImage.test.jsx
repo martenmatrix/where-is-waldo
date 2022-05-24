@@ -12,7 +12,7 @@ jest.mock('./TargetBox.jsx', () => ({
     }
 }));
 
-test('returns the same coordinates', async () => {
+test('returns the same coordinates when clicking on an image', async () => {
     const mockedCurrent = {
         naturalWidth: 1920,
         naturalHeight: 2234,
