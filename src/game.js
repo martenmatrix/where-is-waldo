@@ -20,8 +20,8 @@ const Game = (function () {
 
     function _getHHMMSS(milliseconds) {
         const dateObject = new Date(milliseconds);
-        const dateString = dateObject.toTimeString();
-        const HHMMSS = dateString.split(' ')[0];
+        const dateString = dateObject.toISOString();
+        const HHMMSS = dateString.slice(11, 19);
         return HHMMSS;
     }
 
