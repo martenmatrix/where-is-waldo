@@ -16,6 +16,39 @@ describe('play a normal game', () => {
         },
     ]
 
+    const solutions = {
+        "candy-cane-gingerbread": {
+          "x": {
+            "from": 1368,
+            "to": 1499
+          },
+          "y": {
+            "from": 1097,
+            "to": 1220
+          }
+        },
+        "juggling-gingerbread": {
+          "x": {
+            "from": 967,
+            "to": 1053
+          },
+          "y": {
+            "from": 1531,
+            "to": 1697
+          }
+        },
+        "waving-gingerbread": {
+          "x": {
+            "from": 20,
+            "to": 20
+          },
+          "y": {
+            "from": 20,
+            "to": 20
+          }
+        }
+      }
+
     const game = Game;
     game.start();
 
