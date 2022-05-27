@@ -34,6 +34,7 @@ const Time = styled.div.attrs({ role: "timer" })`
 
 const Stopwatch = styled.img.attrs((props) => ({
     src: props.img || StopwatchIcon,
+    alt: 'Stopwatch'
 }))`
     display: block;
     width: 2rem;
