@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 test('calls onStart when start button was clicked', async () => {
     const mockFunction = jest.fn();
-    render(<StartGameModal onStart={mockFunction}/>);
+    render(<StartGameModal show={true} onStart={mockFunction}/>);
     const startButton = screen.getByRole('button');
 
     const user = userEvent.setup();
