@@ -18,7 +18,6 @@ const Container = styled.div`
 
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    z-index: 1;
 `;
 
 const TimeContainer = styled.div`

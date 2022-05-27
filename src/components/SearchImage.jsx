@@ -6,6 +6,7 @@ import TargetBox from './TargetBox';
 
 const Container = styled.div`
     position: relative;
+    z-index: -1;
     margin-top: 5rem;
     width: 100%;
     object-fit: contain;
