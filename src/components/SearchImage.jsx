@@ -64,7 +64,7 @@ function SearchImage({ charactersToFind, useRef }) {
     return (
         <Container>
             {coordinates && <TargetBox coordinates={coordinates} options={charactersToFind}/>}
-            <Image ref={ImageRef} onClick={onClick} />
+            <Image ref={ImageRef} onClick={onClick} draggable="false"/>
         </Container>
     )
 }
