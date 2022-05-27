@@ -56,6 +56,9 @@ describe('play a normal game', () => {
         expect(timePassedFormatted).toBe('00:00');
     });
 
+    // IMPORTANT: Currently the code is unable to return the time correctly in that specific unlikely case.
+    test.todo('time elapsed can be greater than a day and is still returned correctly');
+
     game.start();
 
     test.skip('able to get characters not found', () => {
