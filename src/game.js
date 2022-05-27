@@ -49,7 +49,7 @@ const Game = (function () {
     }
 
     function _getTime() {
-        const totalMilliseconds = _timer.stoppedAt - _timer.startedAt;
+        const totalMilliseconds = (_timer.startedAt === null) ? 0 : _timer.stoppedAt - _timer.startedAt;
 
         return {
             ..._timer,
