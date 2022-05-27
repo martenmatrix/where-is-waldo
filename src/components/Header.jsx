@@ -42,6 +42,7 @@ const Stopwatch = styled.img.attrs((props) => ({
 
 function Header({ time }) {
     // TODO stop updating header when only timer updates
+    // TODO timer overflows sometimes at chrome on a specific window size
     return (
         <Container>
             <TimeContainer>
