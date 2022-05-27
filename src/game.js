@@ -49,11 +49,19 @@ const Game = (function () {
     }
 
     function _getTime() {
-        const currentTime = Date.now();
-        const totalMilliseconds = (!!_timer.stoppedAt) ? (_timer.stoppedAt - _timer.startedAt) : (currentTime - _timer.startedAt);
+        let totalMilliseconds;
+        const gameStarted = _timer.startedAt !== null;
+        const gameStopped = _timer.stoppedAt !== null;
+
+        if (gameStarted && gameStopped) {
+            totalMilliseconds = _timer.stoppedAt - _timer.startedAt;
+        } else if (gameStarted && !gameStopped) {
+            totalMilliseconds = Date.now() - _timer.startedAt;
+        } else {
+            totalMilliseconds = 0;
+        }
 
         return {
-            ..._timer,
             totalMilliseconds,
             formattedTime: _getHHMMSS(totalMilliseconds)
         }
