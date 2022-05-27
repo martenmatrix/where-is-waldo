@@ -50,6 +50,12 @@ describe('play a normal game', () => {
       }
 
     const game = Game;
+
+    test.skip('returns 00:00 as time formatted when game has not started', () => {
+        const timePassedFormatted =  game.getTimeElapsed().formattedTime;
+        expect(timePassedFormatted).toBe('00:00');
+    });
+
     game.start();
 
     test.skip('able to get characters not found', () => {
@@ -90,7 +96,7 @@ describe('play a normal game', () => {
         // TODO mark other characters
     
         const hasWon2 = game.hasWon();
-        expect(hasWon1).toBe(true);
+        expect(hasWon2).toBe(true);
     });
 
     test.skip("when won returns time elapsed", () => {
