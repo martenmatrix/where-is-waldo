@@ -26,11 +26,11 @@ const Game = (function () {
     }
 
     function _startTimer() {
-        _timer.startedAt = new Date.now();
+        _timer.startedAt = Date.now();
     }
 
     function _stopTimer() {
-        _timer.stoppedAt = new Date.now();
+        _timer.stoppedAt = Date.now();
     }
 
     function _resetData() {
