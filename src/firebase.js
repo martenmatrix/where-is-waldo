@@ -31,7 +31,7 @@ const databaseHandler = (function () {
         
     }
 
-    return { getCoordinatesFor, getHighscores, uploadHighScore  }
+    return { getCoordinatesFor, createHighScoreListener, uploadHighScore  }
 })();
 
 export { databaseHandler }; 
