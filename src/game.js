@@ -1,18 +1,25 @@
 import { databaseHandler } from "./firebase";
 
+import CandyCaneGingerbread from './img/candy-cane-gingerbread.png';
+import JugglingGingerbread from './img/juggling-gingerbread.png';
+import WavingGingerbread from './img/waving-gingerbread.png';
+
 const Game = (function () {
     const _availableCharacters = [
         {
             id: 'juggling-gingerbread',
-            displayName: 'Juggling Gingerbread'
+            displayName: 'Juggling Gingerbread',
+            image: JugglingGingerbread,
         },
         {
             id: 'waving-gingerbread',
-            displayName: 'Waving Gingerbread'
+            displayName: 'Waving Gingerbread',
+            image: WavingGingerbread,
         },
         {
             id: 'candy-cane-gingerbread',
-            displayName: 'Gingerbread with Candy Cane'
+            displayName: 'Gingerbread with Candy Cane',
+            image: CandyCaneGingerbread,
         },
     ];
 
