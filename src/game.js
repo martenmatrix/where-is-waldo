@@ -1,3 +1,5 @@
+import { databaseHandler } from "./firebase";
+
 const Game = (function () {
     const _availableCharacters = [
         {
@@ -80,8 +82,15 @@ const Game = (function () {
     }
     
     function _isCharacterAt(characterId, x, y) {
-        const isCorrect = true;
-        return isCorrect;
+        const coordinates = databaseHandler.getCoordinatesFor(characterId);
+        
+        const correctX = coordinates.x.from >= x && coordinates.x.to <= x;
+        const correctY =  coordinates.y.from >= x && coordinates.y.to <= x;
+
+        if (correctX && correctY) {
+            return true;
+        }
+        return false;
     }
 
     function markCharacterAt(characterId, x, y) {
