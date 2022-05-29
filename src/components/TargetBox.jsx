@@ -23,6 +23,18 @@ const Container = styled.div.attrs(({ coordinates }) => ({
     z-index: 10;
 `
 
+const SelectContainer = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const CharacterImage = styled.img`
+    display: block;
+    object-fit: scale-down; // TODO images as the juggling-gingerbread character image has a low quality when object-fit is used with scale-down in chrome 101.0.4951.67
+    width: 5rem;
+    height: 5rem;
+`
+
 function TargetBox({ coordinates, options, onChange }) {
     const [convertedOptions, setConvertedOptions] = useState();
 
@@ -45,10 +57,10 @@ function TargetBox({ coordinates, options, onChange }) {
 
     function formatOptionLabels({ label }) {
         return (
-            <>
-                <img src={label.image} alt={`${label.displayName} character`} />
+            <SelectContainer>
+                <CharacterImage src={label.image} alt={`${label.displayName} character`} />
                 <span>{label.displayName}</span>
-            </>
+            </SelectContainer>
         )
     }
 
