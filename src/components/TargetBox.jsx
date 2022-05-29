@@ -1,22 +1,49 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Select from 'react-select';
 
-const Select = styled.select.attrs(({ coordinates }) => ({ style: {
-        top: coordinates.relative.y,
-        left: coordinates.relative.x
-    }
+const Container = styled.div.attrs(({ coordinates }) => ({ 
+        style: {
+            top: coordinates.relative.y,
+            left: coordinates.relative.x,
+        }
     })
 )`
     position: absolute;
     z-index: 10;
 `
 
-function TargetBox({ coordinates, options }) {
+function TargetBox({ coordinates, options, onChange }) {
+    const [convertedOptions, setConvertedOptions] = useState();
+
+    useEffect(() => {
+        function getConvertedOptions() {
+            const convertedOptions = [];
+            options.forEach(option => {
+                convertedOptions.push({
+                    value: option.id,
+                    label: option.displayName,
+                });
+            });
+
+            return convertedOptions;
+        }
+
+        const converted = getConvertedOptions();
+        console.log(converted)
+        setConvertedOptions(converted);
+    }, [options])
+
+    function onSelection(selection) {
+        onChange && onChange(selection.value);
+    }
+
     return (
-        <Select coordinates={coordinates}>
-            {options.map(option => <option key={option.id} value={option.id}>{option.displayName}</option>)}
-        </Select>
-    )
+        <Container coordinates={coordinates}>
+            <Select options={convertedOptions} placeholder={'Select the character...'} onChange={onSelection}/>
+        </Container>
+    );
 }
 
 TargetBox.propTypes = {
