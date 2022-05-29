@@ -7,9 +7,18 @@ const Container = styled.div.attrs(({ coordinates }) => ({
         style: {
             top: coordinates.relative.y,
             left: coordinates.relative.x,
-        }
+        },
+        role: 'presentation'
     })
 )`
+    & * {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    label[for="characters"] {
+        visibility: hidden;
+    }
+
     position: absolute;
     z-index: 10;
 `
@@ -23,7 +32,7 @@ function TargetBox({ coordinates, options, onChange }) {
             options.forEach(option => {
                 convertedOptions.push({
                     value: option.id,
-                    label: option.displayName,
+                    label: option,
                 });
             });
 
@@ -31,9 +40,17 @@ function TargetBox({ coordinates, options, onChange }) {
         }
 
         const converted = getConvertedOptions();
-        console.log(converted)
         setConvertedOptions(converted);
     }, [options])
+
+    function formatOptionLabels({ label }) {
+        return (
+            <>
+                <img src={label.image} alt={`${label.displayName} character`} />
+                <span>{label.displayName}</span>
+            </>
+        )
+    }
 
     function onSelection(selection) {
         onChange && onChange(selection.value);
@@ -41,7 +58,10 @@ function TargetBox({ coordinates, options, onChange }) {
 
     return (
         <Container coordinates={coordinates}>
-            <Select options={convertedOptions} placeholder={'Select the character...'} onChange={onSelection}/>
+            <form>
+                <label htmlFor="characters">Characters</label>
+                <Select inputId="characters" formatOptionLabel={formatOptionLabels} options={convertedOptions} placeholder={'Select the character...'} onChange={onSelection}/>
+            </form>
         </Container>
     );
 }
