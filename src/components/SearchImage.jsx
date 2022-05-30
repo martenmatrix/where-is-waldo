@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import mainImage from '../img/search-image.jpg';
-import { useRef as defaultUseRef, useState, useEffect } from 'react';
+import { useRef as defaultUseRef, useState } from 'react';
 import TargetBox from './TargetBox';
 // TODO include TargetBox here and add a function prop to send a request
 
