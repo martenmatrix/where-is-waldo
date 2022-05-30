@@ -8,7 +8,7 @@ import AlertTemplate from 'react-alert-template-basic';
 const alertOptions = {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
-    offset: '30px',
+    offset: '5px',
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
