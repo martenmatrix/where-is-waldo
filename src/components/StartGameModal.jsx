@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Modal from './Modal';
+import { Button } from 'reactstrap';
 
 const Container = styled.div`
     width: 100%;
@@ -10,14 +11,11 @@ const Container = styled.div`
     align-items: center;
 `
 
-const StartButton = styled.button`
-`
-
 function StartGameModal({ onStart, show }) {
     return (
         <Modal show={show}>
             <Container>
-                <StartButton onClick={onStart}>Start Searching</StartButton>
+                <Button color="success" onClick={onStart}>Start Searching</Button>
             </Container>
         </Modal>
     );
