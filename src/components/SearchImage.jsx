@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import mainImage from '../img/search-image.jpg';
-import { useRef as defaultUseRef, useState } from 'react';
+import { useRef as defaultUseRef, useState, useEffect } from 'react';
 import TargetBox from './TargetBox';
 // TODO include TargetBox here and add a function prop to send a request
 
@@ -57,13 +57,19 @@ function SearchImage({ charactersToFind, onCharacterSelect, useRef }) {
                 y: relativeY
             }
         });
+        setSelectedCharacter();
+    }
+
+    function onCharacterSelectChange(characterId) {
+        setSelectedCharacter(characterId);
+        onCharacterSelect(coordinates.relative.x, coordinates.relative.y, characterId);
     }
 
     return (
         <Container>
             {coordinates && <TargetBox coordinates={coordinates}
                                        options={charactersToFind}
-                                       onChange={(characterId) => setSelectedCharacter(characterId)}
+                                       onChange={onCharacterSelectChange}
                                        value={selectedCharacter}/>}
 
             <Image ref={ImageRef} onClick={(e) => getCoordinates(e)} draggable="false"/>
