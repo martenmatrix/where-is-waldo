@@ -112,7 +112,7 @@ describe('play a normal game', () => {
 
         await game.markCharacterAt('candy-cane-gingerbread', 1368, 1097);
         await game.markCharacterAt('juggling-gingerbread', 967, 1531);
-        await game.markCharacterAt('waving-gingerbread', 290, 846);
+        await game.markCharacterAt('waving-gingerbread', 709, 2225);
 
         const hasWon2 = game.hasWon();
         expect(hasWon2).toBe(true);
