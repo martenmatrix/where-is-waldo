@@ -35,7 +35,7 @@ const CharacterImage = styled.img`
     height: 5rem;
 `
 
-function TargetBox({ coordinates, options, onChange, value = 'candy-cane-gingerbread' }) {
+function TargetBox({ coordinates, options, onChange, value}) {
     const [convertedOptions, setConvertedOptions] = useState();
     const [selectedOptionObject, setSelectedOptionObject] = useState();
 
