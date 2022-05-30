@@ -30,12 +30,12 @@ jest.mock('./firebase', () => ({
                 case 'waving-gingerbread':
                     return ({
                         x: {
-                            from: 290,
-                            to: 303
+                            from: 709,
+                            to: 772
                         },
                         y: {
-                            from: 846,
-                            to: 880
+                            from: 2069,
+                            to: 2225
                         }
                     });
                 default:
