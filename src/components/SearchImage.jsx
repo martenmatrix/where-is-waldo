@@ -24,6 +24,7 @@ const Image = styled.img.attrs({ src: mainImage, alt: 'Contains the figures to f
 function SearchImage({ charactersToFind, onCharacterSelect, useRef }) {
     const ImageRef = useRef();
     const [coordinates, setCoordinates] = useState();
+    const [selectedCharacter, setSelectedCharacter] = useState();
 
     function getCoordinates(e) {
         const round = (num) => Math.round(num);
@@ -58,14 +59,14 @@ function SearchImage({ charactersToFind, onCharacterSelect, useRef }) {
         });
     }
 
-    function onClick(event) {
-        getCoordinates(event);
-    }
-
     return (
         <Container>
-            {coordinates && <TargetBox coordinates={coordinates} options={charactersToFind} onChange={onCharacterSelect}/>}
-            <Image ref={ImageRef} onClick={onClick} draggable="false"/>
+            {coordinates && <TargetBox coordinates={coordinates}
+                                       options={charactersToFind}
+                                       onChange={(characterId) => setSelectedCharacter(characterId)}
+                                       value={selectedCharacter}/>}
+
+            <Image ref={ImageRef} onClick={(e) => getCoordinates(e)} draggable="false"/>
         </Container>
     )
 }
