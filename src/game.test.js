@@ -1,59 +1,73 @@
-import Game from 'game';
+import Game from './game';
+
+jest.mock('./firebase', () => ({
+    __esModule: true,
+    databaseHandler: {
+        getCoordinatesFor: async (characterId) => {
+            switch (characterId) {
+                case 'candy-cane-gingerbread':
+                    return ({
+                        x: {
+                            from: 1368,
+                            to: 1499
+                        },
+                        y: {
+                            from: 1097,
+                            to: 1220
+                        }
+                    });
+                case 'juggling-gingerbread':
+                    return ({
+                        x: {
+                            from: 967,
+                            to: 1053
+                        },
+                        y: {
+                            from: 1531,
+                            to: 1697
+                        }
+                    });
+                case 'waving-gingerbread':
+                    return ({
+                        x: {
+                            from: 290,
+                            to: 303
+                        },
+                        y: {
+                            from: 846,
+                            to: 880
+                        }
+                    });
+                default:
+            }
+        }
+    }
+}));
 
 describe('play a normal game', () => {
-    const currentCharacters = [
-        {
+
+    const currentCharacters = [{
             id: 'juggling-gingerbread',
-            displayName: 'Juggling Gingerbread'
+            displayName: 'Juggling Gingerbread',
+            image: 'juggling-gingerbread.png',
         },
         {
             id: 'waving-gingerbread',
-            displayName: 'Waving Gingerbread'
+            displayName: 'Waving Gingerbread',
+            image: 'waving-gingerbread.png',
         },
         {
             id: 'candy-cane-gingerbread',
-            displayName: 'Gingerbread with Candy Cane'
+            displayName: 'Gingerbread with Candy Cane',
+            image: 'candy-cane-gingerbread.png',
         },
     ]
 
-    const solutions = {
-        "candy-cane-gingerbread": {
-          "x": {
-            "from": 1368,
-            "to": 1499
-          },
-          "y": {
-            "from": 1097,
-            "to": 1220
-          }
-        },
-        "juggling-gingerbread": {
-          "x": {
-            "from": 967,
-            "to": 1053
-          },
-          "y": {
-            "from": 1531,
-            "to": 1697
-          }
-        },
-        "waving-gingerbread": {
-          "x": {
-            "from": 20,
-            "to": 20
-          },
-          "y": {
-            "from": 20,
-            "to": 20
-          }
-        }
-      }
-
     const game = Game;
 
-    test.skip('returns 00:00 as time formatted when game has not started', () => {
-        const timePassedFormatted =  game.getTimeElapsed().formattedTime;
-        expect(timePassedFormatted).toBe('00:00');
+    test('returns 00:00 as time formatted when game has not started', () => {
+        const timePassedFormatted = game.getTimeElapsed();
+        expect(timePassedFormatted).toBe('00:00:00');
     });
 
     // IMPORTANT: Currently the code is unable to return the time correctly in that specific unlikely case.
@@ -61,53 +75,55 @@ describe('play a normal game', () => {
 
     game.start();
 
-    test.skip('able to get characters not found', () => {
+    test('able to get characters not found', () => {
         const notFound = game.getCharactersNotFound();
 
         expect(notFound).toEqual(currentCharacters);
     });
 
-    test.skip('returns true when character was hit and unable to hit multiple times', () => {
+    test('returns true when character was hit and unable to hit multiple times', async () => {
         const characterToHit = {
-            x: 200,
-            y: 200,
+            x: 1000,
+            y: 1600,
             id: 'juggling-gingerbread'
         }
 
-        const response1 = game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
+        const response1 = await game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
         expect(response1).toBe(true);
 
-        const response2 = game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
+        const response2 = await game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
         expect(response2).toBe(false);
     });
 
-    test.skip("returns false when character wasn't hit", () => {
+    test("returns false when character wasn't hit", async () => {
         const characterToHit = {
             x: 200,
             y: 200,
             id: 'juggling-gingerbread'
         }
 
-        const response = game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
+        const response = await game.markCharacterAt(characterToHit.id, characterToHit.x, characterToHit.y);
         expect(response).toBe(false);
     });
 
-    test.skip("returns true when won", () => {
+    test("returns true when won", async () => {
         const hasWon1 = game.hasWon();
         expect(hasWon1).toBe(false);
-        
-        // TODO mark other characters
-    
+
+        await game.markCharacterAt('candy-cane-gingerbread', 1368, 1097);
+        await game.markCharacterAt('juggling-gingerbread', 967, 1531);
+        await game.markCharacterAt('waving-gingerbread', 290, 846);
+
         const hasWon2 = game.hasWon();
         expect(hasWon2).toBe(true);
     });
 
-    test.skip("when won returns time elapsed", () => {
+    test("when won returns time elapsed", () => {
         const time = game.getTimeElapsed();
-        expect(typeof time.formattedTime).toBe('string');
+        expect(typeof time).toBe('string');
     });
 
-    test.skip("data resets when another game is started", () => {
+    test("data resets when another game is started", () => {
         game.start();
         const notFound = game.getCharactersNotFound();
         expect(notFound).toEqual(currentCharacters);
