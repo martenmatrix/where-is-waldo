@@ -48,6 +48,11 @@ const Game = (function () {
         _foundCharacters = [];
     }
 
+    function _removeCharacterNotFound(removeCharacterId) {
+        const newCharactersNotFound = _notFoundCharacters.filter(character => character.id !== removeCharacterId);
+        _notFoundCharacters = newCharactersNotFound;
+    }
+
     function _characterIsNotFound(id) {
         const isNotFound = _notFoundCharacters.some((element) => element.id === id);
         return isNotFound;
@@ -88,11 +93,11 @@ const Game = (function () {
         return false;
     }
     
-    function _isCharacterAt(characterId, x, y) {
-        const coordinates = databaseHandler.getCoordinatesFor(characterId);
+    async function _isCharacterAt(characterId, x, y) {
+        const coordinates = await databaseHandler.getCoordinatesFor(characterId);
         
-        const correctX = coordinates.x.from >= x && coordinates.x.to <= x;
-        const correctY =  coordinates.y.from >= x && coordinates.y.to <= x;
+        const correctX = coordinates.x.from <= x && coordinates.x.to >= x;
+        const correctY =  coordinates.y.from <= y && coordinates.y.to >= y;
 
         if (correctX && correctY) {
             return true;
@@ -100,13 +105,14 @@ const Game = (function () {
         return false;
     }
 
-    function markCharacterAt(characterId, x, y) {
+    async function markCharacterAt(characterId, x, y) {
         const notFound = _characterIsNotFound(characterId);
-        if (notFound) return false;
+        if (!notFound) return false;
 
-        const isCorrect = _isCharacterAt(characterId, x, y);
+        const isCorrect = await _isCharacterAt(characterId, x, y);
         if (isCorrect) {
-            _foundCharacters.push({ characterId, x, y });
+            _foundCharacters.push(characterId);
+            _removeCharacterNotFound(characterId);
         }
 
         if (hasWon()) {
