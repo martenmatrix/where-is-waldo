@@ -35,8 +35,9 @@ const CharacterImage = styled.img`
     height: 5rem;
 `
 
-function TargetBox({ coordinates, options, onChange }) {
+function TargetBox({ coordinates, options, onChange, value = 'candy-cane-gingerbread' }) {
     const [convertedOptions, setConvertedOptions] = useState();
+    const [selectedOptionObject, setSelectedOptionObject] = useState();
 
     useEffect(() => {
         function getConvertedOptions() {
@@ -68,11 +69,22 @@ function TargetBox({ coordinates, options, onChange }) {
         onChange && onChange(selection.value);
     }
 
+    useEffect(() => {
+        function getSelectedOptionsObject() {
+            if (!convertedOptions) return;
+            const optionObject = convertedOptions.filter((currentValue) => currentValue.value === value);
+            return optionObject;
+        }
+
+        const selectedOptionObject = getSelectedOptionsObject();
+        setSelectedOptionObject(selectedOptionObject)
+    }, [convertedOptions, value])
+
     return (
         <Container coordinates={coordinates}>
             <form>
                 <label htmlFor="characters">Characters</label>
-                <Select inputId="characters" formatOptionLabel={formatOptionLabels} options={convertedOptions} placeholder={'Select the character...'} onChange={onSelection}/>
+                <Select value={selectedOptionObject} inputId="characters" formatOptionLabel={formatOptionLabels} options={convertedOptions} placeholder={'Select the character...'} onChange={onSelection}/>
             </form>
         </Container>
     );
