@@ -21,7 +21,7 @@ const Image = styled.img.attrs({ src: mainImage, alt: 'Contains the figures to f
     left: 0;
 `;
 
-function SearchImage({ charactersToFind, useRef }) {
+function SearchImage({ charactersToFind, onCharacterSelect, useRef }) {
     const ImageRef = useRef();
     const [coordinates, setCoordinates] = useState();
 
@@ -64,7 +64,7 @@ function SearchImage({ charactersToFind, useRef }) {
 
     return (
         <Container>
-            {coordinates && <TargetBox coordinates={coordinates} options={charactersToFind}/>}
+            {coordinates && <TargetBox coordinates={coordinates} options={charactersToFind} onChange={onCharacterSelect}/>}
             <Image ref={ImageRef} onClick={onClick} draggable="false"/>
         </Container>
     )
