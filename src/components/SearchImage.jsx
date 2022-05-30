@@ -62,7 +62,7 @@ function SearchImage({ charactersToFind, onCharacterSelect, useRef }) {
 
     function onCharacterSelectChange(characterId) {
         setSelectedCharacter(characterId);
-        onCharacterSelect(coordinates.relative.x, coordinates.relative.y, characterId);
+        onCharacterSelect(coordinates.absolute.x, coordinates.absolute.y, characterId);
     }
 
     return (
