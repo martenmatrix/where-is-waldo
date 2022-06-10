@@ -16,4 +16,13 @@ test('able to type in a name and click the submit button', async () => {
     await user.click(submit);
 });
 
-test.todo('unable to submit when name field is empty');
+test('unable to submit when name field is empty', () => {
+    const mockOnSubmit = jest.fn();
+    render(<UploadHighscore onSubmit={mockOnSubmit} />);
+    const submit = screen.getByRole('button');
+    const user = userEvent.setup();
+
+    user.click(submit);
+
+    expect(mockOnSubmit).not.toHaveBeenCalled();
+});

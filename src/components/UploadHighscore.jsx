@@ -20,7 +20,7 @@ function UploadHighscore({ onSubmit }) {
         <StyledForm onSubmit={handleSubmit}>
             <FormGroup>
                 <Label for="username">Name</Label>
-                <Input id="username" name="username" value={username} onChange={(e) => setUsername(e.currentTarget.value)}/>
+                <Input id="username" name="username" value={username} onChange={(e) => setUsername(e.currentTarget.value)} required/>
             </FormGroup>
             <FormGroup>
                 <Button>Submit</Button>
