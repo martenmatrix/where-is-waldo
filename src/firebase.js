@@ -23,15 +23,22 @@ const databaseHandler = (function () {
         return coordinates;
     }
 
-    function createHighScoreListener(onChange) {
+    async function uploadHighScore(name, time) {
+        return new Promise((resolve) => {
+            const reference =  ref(database, 'highscores/');
+            reference.push().set({
+                name,
+                time
+            })
+            .then(() => resolve());
+        });
+    }
+
+    function onHighScoreTop10Change(onChange) {
 
     }
 
-    function uploadHighScore(username, time) {
-        
-    }
-
-    return { getCoordinatesFor, createHighScoreListener, uploadHighScore  }
+    return { getCoordinatesFor, uploadHighScore, onHighScoreTop10Change  };
 })();
 
 export { databaseHandler }; 
