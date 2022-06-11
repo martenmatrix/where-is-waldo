@@ -19,8 +19,11 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App() {
     const [charactersNotFound, setCharactersNotFound] = useState(null);
+
     const [showStartModal, setShowStartModal] = useState(true);
     const [showHighscoreModal, setShowHighscoreModal] = useState(false);
+    const [scoreUploaded, setScoreUploaded] = useState(false);
+
     const [time, setTime] = useState(null);
     const alert = useAlert();
 
@@ -57,6 +60,7 @@ export default function App() {
 
     async function uploadHighscore(name) {
         await Game.uploadHighscore(name);
+        setScoreUploaded(true);
     }
 
     useEffect(() => {
@@ -77,7 +81,7 @@ export default function App() {
             <Header time={time}/>
             <StartGameModal onStart={startGame} show={showStartModal}/>
             <SearchImage charactersToFind={charactersNotFound} onCharacterSelect={markCharacter}/>
-            <HighscoreModal onSubmit={uploadHighscore} show={showHighscoreModal}/>
+            <HighscoreModal onSubmit={uploadHighscore} show={showHighscoreModal} scoreUploaded={scoreUploaded}/>
         </>
     )
 }
