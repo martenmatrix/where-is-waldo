@@ -28,8 +28,10 @@ const databaseHandler = (function () {
             const reference = ref(database, 'highscores');
             push(reference, {
                 name,
-                timeInMs,
-                formattedTime,
+                time: {
+                    ms: timeInMs,
+                    formatted: formattedTime,
+                },
             })
             .then(() => resolve());
         });
