@@ -1,5 +1,7 @@
 import Game from './game';
 
+const mockUploadHighscore = jest.fn(() => console.log('called!!!'));   
+
 jest.mock('./firebase', () => ({
     __esModule: true,
     databaseHandler: {
@@ -40,7 +42,8 @@ jest.mock('./firebase', () => ({
                     });
                 default:
             }
-        }
+        },
+        uploadHighscore: (...args) => mockUploadHighscore(...args),
     }
 }));
 
@@ -128,4 +131,10 @@ describe('play a normal game', () => {
         const notFound = game.getCharactersNotFound();
         expect(notFound).toEqual(currentCharacters);
     });
-})
+
+    test('able to upload highscore', async () => {
+        await game.uploadHighscore('matrix');
+        expect(mockUploadHighscore).toHaveBeenCalledWith('matrix', expect.any(Number), expect.any(String));
+    });
+
+});
