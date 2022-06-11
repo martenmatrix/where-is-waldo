@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, onValue } from "firebase/database";
+import { getDatabase, ref, get, push, onValue } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB9BJBVa2UtjarhtFJ9KSRlPvrg6G9QqOM",
@@ -25,8 +25,8 @@ const databaseHandler = (function () {
 
     async function uploadHighscore(name, timeInMs, formattedTime) {
         return new Promise((resolve) => {
-            const reference =  ref(database, 'highscores/');
-            reference.push().set({
+            const reference = ref(database, 'highscores');
+            push(reference, {
                 name,
                 timeInMs,
                 formattedTime,
