@@ -26,3 +26,5 @@ test('unable to submit when name field is empty', () => {
 
     expect(mockOnSubmit).not.toHaveBeenCalled();
 });
+
+test.todo('button shows a spinner until the highscore is uploaded');
