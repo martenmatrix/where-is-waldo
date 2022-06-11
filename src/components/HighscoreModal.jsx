@@ -3,6 +3,13 @@ import UploadHighscore from "./UploadHighscore";
 import HighscoreTable from "./HighscoreTable";
  
 import { useState } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 function HighscoreModal({ show, onSubmit, scoreUploaded, highscores }) {
     const [showTable, setShowTable] = useState(false);
@@ -14,7 +21,10 @@ function HighscoreModal({ show, onSubmit, scoreUploaded, highscores }) {
 
     return (
         <Modal show={show}>
-            {showTable && scoreUploaded ? <HighscoreTable /> : <UploadHighscore onSubmit={onNameSubmit} />}
+            <Wrapper>
+                {showTable && scoreUploaded ? <HighscoreTable /> : 
+                                              <UploadHighscore onSubmit={onNameSubmit} />}
+            </Wrapper>
         </Modal>
     );
 }
