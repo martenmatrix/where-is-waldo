@@ -4,7 +4,7 @@ import HighscoreTable from "./HighscoreTable";
  
 import { useState } from 'react';
 
-function HighscoreModal({ show, onSubmit, highscores }) {
+function HighscoreModal({ show, onSubmit, scoreUploaded, highscores }) {
     const [showTable, setShowTable] = useState(false);
 
     function onNameSubmit(name) {
@@ -14,7 +14,7 @@ function HighscoreModal({ show, onSubmit, highscores }) {
 
     return (
         <Modal show={show}>
-            {showTable ? <HighscoreTable /> : <UploadHighscore onSubmit={onNameSubmit} />}
+            {showTable && scoreUploaded ? <HighscoreTable /> : <UploadHighscore onSubmit={onNameSubmit} />}
         </Modal>
     );
 }
