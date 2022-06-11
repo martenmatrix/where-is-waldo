@@ -122,12 +122,18 @@ const Game = (function () {
         return isCorrect;
     }
 
+    async function uploadHighscore(name) {
+        const time = _getTime();
+        await databaseHandler.uploadHighscore(name, time.totalMilliseconds, time.formattedTime);
+
+    }
+
     function start() {
         _resetData();
         _startTimer();
     }
 
-    return { start, markCharacterAt, hasWon, getTimeElapsed, getCharactersNotFound };
+    return { start, markCharacterAt, hasWon, uploadHighscore, getTimeElapsed, getCharactersNotFound };
 })()
 
 export default Game;
