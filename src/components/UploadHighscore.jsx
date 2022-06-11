@@ -1,4 +1,4 @@
-import { Input, Label, Form, FormGroup, Button } from 'reactstrap';
+import { Input, Label, Form, FormGroup, Button, Spinner } from 'reactstrap';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -9,10 +9,12 @@ const StyledForm = styled(Form)`
 
 function UploadHighscore({ onSubmit }) {
     const [username, setUsername] = useState('');
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
         onSubmit && onSubmit(username);
+        setHasSubmitted(true);
     }
 
     return (
@@ -22,7 +24,7 @@ function UploadHighscore({ onSubmit }) {
                 <Input id="username" name="username" value={username} onChange={(e) => setUsername(e.currentTarget.value)} required/>
             </FormGroup>
             <FormGroup>
-                <Button>Submit</Button>
+                <Button>{hasSubmitted ? <Spinner/> : 'Submit'}</Button>
             </FormGroup>
         </StyledForm>
     )
