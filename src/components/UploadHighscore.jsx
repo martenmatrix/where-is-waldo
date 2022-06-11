@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const StyledForm = styled(Form)`
     display: flex;
     align-items: flex-end;
-    width: 50%;
 `
 
 function UploadHighscore({ onSubmit }) {
