@@ -38,7 +38,14 @@ const databaseHandler = (function () {
     }
 
     function onHighScoreTop10Change(onChange) {
+        const reference = ref(database, 'highscores');
+        reference
+        .orderByChild('time/ms')
+        .on('value', (snapshot) => onChange(snapshot.val()), 
+                        error => console.error(error));
 
+        // returns close connection function
+        return () => ref.off('value', onChange);
     }
 
     return { getCoordinatesFor, uploadHighscore, onHighScoreTop10Change  };
