@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Table } from 'reactstrap';
 
 function HighscoreEntry({ name, time }) {
