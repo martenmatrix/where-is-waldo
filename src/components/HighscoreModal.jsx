@@ -24,7 +24,7 @@ function HighscoreModal({ show, onSubmit, scoreUploaded, highscores }) {
     return (
         <Modal show={show}>
             <Wrapper>
-                {showTable && scoreUploaded ? <HighscoreTable /> : 
+                {showTable && scoreUploaded ? <HighscoreTable highscores={highscores}/> : 
                                               <UploadHighscore onSubmit={onNameSubmit} />}
             </Wrapper>
         </Modal>
