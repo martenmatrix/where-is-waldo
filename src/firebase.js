@@ -23,7 +23,7 @@ const databaseHandler = (function () {
         return coordinates;
     }
 
-    async function uploadHighScore(name, timeInMs, formattedTime) {
+    async function uploadHighscore(name, timeInMs, formattedTime) {
         return new Promise((resolve) => {
             const reference =  ref(database, 'highscores/');
             reference.push().set({
@@ -39,7 +39,7 @@ const databaseHandler = (function () {
 
     }
 
-    return { getCoordinatesFor, uploadHighScore, onHighScoreTop10Change  };
+    return { getCoordinatesFor, uploadHighscore, onHighScoreTop10Change  };
 })();
 
 export { databaseHandler }; 
