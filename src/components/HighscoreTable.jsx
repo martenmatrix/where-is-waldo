@@ -19,7 +19,7 @@ function HighscoreTable({ highscores }) {
                 </tr>
             </thead>
             <tbody>
-                {highscores.map((highscore, index) => <HighscoreEntry key={index} name={highscore.name} time={highscore.time} />)}
+                {highscores && highscores.map((highscore, index) => <HighscoreEntry key={index} name={highscore.name} time={highscore.time} />)}
             </tbody>
         </Table>
     );
