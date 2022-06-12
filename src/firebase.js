@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, push, onValue } from "firebase/database";
+import { getDatabase, ref, get, push, query, onValue, off, orderByChild, limitToFirst } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB9BJBVa2UtjarhtFJ9KSRlPvrg6G9QqOM",
@@ -39,13 +39,21 @@ const databaseHandler = (function () {
 
     function onHighScoreTop10Change(onChange) {
         const reference = ref(database, 'highscores');
-        reference
-        .orderByChild('time/ms')
-        .on('value', (snapshot) => onChange(snapshot.val()), 
-                        error => console.error(error));
+        const sortedTop10 = query(reference, orderByChild('time/ms'), limitToFirst(10));
+
+        const callback = (snapshots) => {
+            const allHighscores = [];
+            snapshots.forEach((snapshot) => {
+                // TODO this cannot be done in an arrow function, probably a bug in firebase
+                allHighscores.push(snapshot.val());
+            });
+            onChange(allHighscores);
+        }
+
+        onValue(sortedTop10, callback);
 
         // returns close connection function
-        return () => ref.off('value', onChange);
+        return () => off(sortedTop10, callback);
     }
 
     return { getCoordinatesFor, uploadHighscore, onHighScoreTop10Change  };
