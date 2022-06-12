@@ -8,6 +8,7 @@ import SearchImage from './SearchImage';
 import HighscoreModal from './HighscoreModal';
 
 import Game from '../game';
+import { databaseHandler } from '../firebase';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export default function App() {
+    const [highscores, setHighscores] = useState();
     const [charactersNotFound, setCharactersNotFound] = useState(null);
 
     const [showStartModal, setShowStartModal] = useState(true);
@@ -68,6 +70,17 @@ export default function App() {
     }, []);
 
     useEffect(() => {
+        function formatHighscores(highscores) {
+            const formattedHighscores = highscores.map(highscore => ({name: highscore.name, time: highscore.time.formatted}));
+            setHighscores(formattedHighscores);
+        }
+
+        const endConnection = databaseHandler.onHighScoreTop10Change(formatHighscores)
+
+        return () => endConnection();
+    }, []);
+
+    useEffect(() => {
         getTime();
         const interval = setInterval(getTime, 1000);
 
@@ -81,7 +94,7 @@ export default function App() {
             <Header time={time}/>
             <StartGameModal onStart={startGame} show={showStartModal}/>
             <SearchImage charactersToFind={charactersNotFound} onCharacterSelect={markCharacter}/>
-            <HighscoreModal onSubmit={uploadHighscore} show={showHighscoreModal} scoreUploaded={scoreUploaded}/>
+            <HighscoreModal onSubmit={uploadHighscore} show={showHighscoreModal} scoreUploaded={scoreUploaded} highscores={highscores}/>
         </>
     )
 }
