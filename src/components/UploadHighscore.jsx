@@ -22,6 +22,7 @@ function UploadHighscore({ onSubmit }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (hasSubmitted) return;
         onSubmit && onSubmit(username);
         setHasSubmitted(true);
     }
