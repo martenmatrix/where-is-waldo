@@ -7,6 +7,15 @@ const StyledForm = styled(Form)`
     align-items: flex-end;
 `
 
+const StyledButton = styled(Button)`
+    width: 5rem;
+    height: 2.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 function UploadHighscore({ onSubmit }) {
     const [username, setUsername] = useState('');
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -24,7 +33,7 @@ function UploadHighscore({ onSubmit }) {
                 <Input id="username" name="username" value={username} onChange={(e) => setUsername(e.currentTarget.value)} required/>
             </FormGroup>
             <FormGroup>
-                <Button>{hasSubmitted ? <Spinner/> : 'Submit'}</Button>
+                <StyledButton>{hasSubmitted ? <Spinner/> : 'Submit'}</StyledButton>
             </FormGroup>
         </StyledForm>
     )
