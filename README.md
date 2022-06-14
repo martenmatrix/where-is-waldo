@@ -68,7 +68,7 @@ If you want to run the application on your local pc or just want to contribute, 
 	- **reactstrap** v.9.0.3
 - **React Select** v.5.3.2
 - **React Alert** v.7.0.5
-> :warning: This package is not yet supported for the React version used. I fixed this with a fork of the project. For more information, visit [this GitHub issue](https://github.com/schiehll/react-alert/issues/192).
+> :warning: This package is not yet supported for the React version used. I fixed this with a fork of the React Alert project. For more information, visit [this GitHub issue](https://github.com/schiehll/react-alert/issues/192).
 - **Styled Components** v.5.3.5
 - **Firebase (Hosting, Realtime Database)** v.9.8.1
 
