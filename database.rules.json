@@ -6,7 +6,9 @@
     },
     "highscores": {
       ".read": true,
-      ".write": "!data.exists()"
+      "$id": {
+        ".write": "!data.exists()"
+      }
     }
   }
 }
