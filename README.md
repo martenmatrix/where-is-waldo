@@ -12,6 +12,14 @@ This is a classical "Where's Waldo" game, however it does not contain other char
 - [Known Issues](#exclamation-known-issues)
 - [Credits](#pray-credits)
 - [License](#scroll-license)
+
+## :globe_with_meridians: Deployed links
+
+The application is hosted at the following addresses:
+
+- https://where-is-waldo-e61b2.web.app/
+- https://where-is-waldo-e61b2.firebaseapp.com/
+
 - If the player doesn't find all characters after 24 hours, the timer resets to `00:00:00` because the milliseconds passed are converted to a date object and it's day is stripped out later to only receive the time. A solution to this is shown in [this answer on Stack Overflow](https://stackoverflow.com/a/67256291).
 - Data is written to the database from the clients browser, this makes it very easy to create manipulated highscores. However, the clients permissions prevents him from deleting/editing highscores.
 
