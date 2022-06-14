@@ -53,6 +53,25 @@ If you want to run the application on your local pc or just want to contribute, 
 
 3. If you want to build the site for production. Run `npm run build` or on windows `$env:CI=$false; npm run buildWarningsAsErrors;`. A folder called “build” should get created. You may serve the site with a static server with the following command: `serve -s build`.
 > :warning: You need to have the `serve` package installed. Install it with `npm install -g serve`.
+
+## :blue_book: Technology Stack
+
+- **Node.js** v.16.13.1
+- **Create React App** v5.0.0
+- **Jest** v.28.1.0
+- **React Testing Library** v.13.2.0
+	- **@testing-library/jest-dom** v.5.16.4
+	- **@testing-library/user-event** v.14.2.0
+    - **@testing-library/react** v.13.2.0
+    - **react-select-event** v.5.5.0
+- **Bootstrap** v.5.1.3
+	- **reactstrap** v.9.0.3
+- **React Select** v.5.3.2
+- **React Alert** v.7.0.5
+> :warning: This package is not yet supported for the React version used. I fixed this with a fork of the project. For more information, visit [this GitHub issue](https://github.com/schiehll/react-alert/issues/192).
+- **Styled Components** v.5.3.5
+- **Firebase (Hosting, Realtime Database)** v.9.8.1
+
 - If the player doesn't find all characters after 24 hours, the timer resets to `00:00:00` because the milliseconds passed are converted to a date object and it's day is stripped out later to only receive the time. A solution to this is shown in [this answer on Stack Overflow](https://stackoverflow.com/a/67256291).
 - Data is written to the database from the clients browser, this makes it very easy to create manipulated highscores. However, the clients permissions prevents him from deleting/editing highscores.
 
