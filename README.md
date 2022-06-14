@@ -1,6 +1,7 @@
 # Where's Waldo?
 
 This is a classical "Where's Waldo" game, however it does not contain other characters. The user is able to find three characters, upload his time taken to find them and compare his time to highscores from other players.
+	
 ## Table of Contents
 
 - [Deployed links](#globe_with_meridians-deployed-links)
